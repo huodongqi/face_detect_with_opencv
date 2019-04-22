@@ -1,0 +1,27 @@
+import cv2
+import os
+
+classifier = cv2.CascadeClassifier(
+    '/Applications/anaconda3/pkgs/libopencv-3.4.2-h7c891bd_1/share/OpenCV/lbpcascades/lbpcascade_frontalface_improved.xml')
+#读取内置分类器文件
+color = (0, 255, 0)
+#检测框颜色
+def face_detect(image, filename):
+    grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)#转换灰度，便于辨识
+    faces = classifier.detectMultiScale(grey, scaleFactor=1.16,
+                                        minNeighbors=5, minSize=(25, 25), flags=0)
+    #人脸检测
+    for face in faces:
+        if len(face):
+            x, y, w, h = face
+            cv2.imwrite('./result_lbp/' + filename,
+                        cv2.rectangle(image, (x, y), (x + h, y + h), color, 2))
+            #保存检测后的结果
+    print(filename + ' have been saved!')
+
+if 'result_lbp' not in os.listdir('./'):
+    os.mkdir('result_lbp')#建立保存图像的文件夹
+facedir = os.listdir('./data/')#获取数据集列表
+for faceimage in facedir:#数据集遍历并检测保存
+    image = cv2.imread('./data/' + faceimage)
+    face_detect(image, faceimage)
