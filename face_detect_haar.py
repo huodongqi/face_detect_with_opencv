@@ -2,7 +2,7 @@ import cv2
 import os
 
 classifier = cv2.CascadeClassifier(
-    '/Applications/anaconda3/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
+    './haarcascade_frontalface_default.xml')
 #读取内置分类器文件
 color = (0, 255, 0)
 #检测框颜色
