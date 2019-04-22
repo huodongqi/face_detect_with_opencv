@@ -2,7 +2,7 @@ import cv2
 import os
 
 classifier = cv2.CascadeClassifier(
-    '/Applications/anaconda3/pkgs/libopencv-3.4.2-h7c891bd_1/share/OpenCV/lbpcascades/lbpcascade_frontalface_improved.xml')
+    './lbpcascade_frontalface_improved.xml')
 #读取内置分类器文件
 color = (0, 255, 0)
 #检测框颜色
